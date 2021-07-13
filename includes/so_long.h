@@ -21,10 +21,15 @@ typedef struct	s_img
 typedef	struct	s_texs
 {
 	int			*player;
+	void		*im_player;
 	int			*cons;
+	void		*im_cons;
 	int			*wall;
+	void		*im_wall;
 	int			*empty;
+	void		*im_empty;
 	int			*exit;
+	void		*im_exit;
 }				t_texs;
 
 
@@ -51,5 +56,6 @@ int 	add_exit(t_oo_long *game, int x, int y);
 void	free_dtab(char **dtab, int size);
 int		error_msg(char *msg);
 int		mlx_start(t_oo_long *game);
+void	init_image(t_oo_long *game);
 
 #endif
