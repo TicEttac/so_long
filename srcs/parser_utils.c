@@ -6,6 +6,7 @@ int add_start(t_oo_long *game, int x, int y)
     {
         game->x = x;
         game->y = y;
+        game->map[x][y] = '0';
         return (1);
     }
     return (0);

@@ -5,6 +5,9 @@ SRCS =		main.c			\
 			parser.c		\
 			parser_utils.c	\
 			mlx.c			\
+			textures.c		\
+			hooks.c			\
+			put_textures.c	\
 
 GNL_SRCS =	get_next_line.c		\
 		get_next_line_utils.c	\

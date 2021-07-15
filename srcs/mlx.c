@@ -1,24 +1,5 @@
 #include "so_long.h"
 
-int		load_texture(t_oo_long *game)
-{
-	int		x;
-	int		y;
-	int		sl;
-	int		bpp;
-	int		en;
-
-	game->tex.im_player = mlx_xpm_file_to_image(game->mlx, "../textures/player.xpm", &x, &y);
-	game->tex.player = (int *)mlx_get_data_addr(game->tex.im_player, &bpp, &sl, &en);
-	game->tex.im_wall = mlx_xpm_file_to_image(game->mlx, "../textures/wall.xpm", &x, &y);
-	game->tex.wall = (int *)mlx_get_data_addr(game->tex.im_wall, &bpp, &sl, &en);
-	game->tex.im_cons = mlx_xpm_file_to_image(game->mlx, "../textures/cons.xpm", &x, &y);
-	game->tex.cons = (int *)mlx_get_data_addr(game->tex.im_cons, &bpp, &sl, &en);
-	game->tex.im_empty = mlx_xpm_file_to_image(game->mlx, "../textures/empty.xpm", &x, &y);
-	game->tex.empty = (int *)mlx_get_data_addr(game->tex.im_empty, &bpp, &sl, &en);
-	return (1);
-}
-
 int		mlx_start(t_oo_long *game)
 {
 	if (!(game->mlx = mlx_init()))
@@ -27,21 +8,59 @@ int		mlx_start(t_oo_long *game)
 	if (!(game->win = mlx_new_window(game->mlx,
 					game->max_len, game->len, "so_long")))
 		return (error_msg("MLX error : funct. new_window doesn't work.\n"));
-	if (!load_texture(game))
+	if (!load_textures(game))
 		return (0);
 	return (1);
 }
 
-void	init_image(t_oo_long *game)
+int	init_image(t_oo_long *game)
 {
 	int		bpp;
 	int		endian;
 
 	bpp = 32;
 	endian = 0;
-	game->image.img = mlx_new_image(game->mlx, game->max_len, game->len);
+	if (!(game->image.img = mlx_new_image(game->mlx, game->max_len, game->len)))
+		return (ERROR);
 	//player->image.sl = player->file->win[0];
-	game->image.tab = (int*)mlx_get_data_addr(game->image.img, &bpp,
-	&game->image.sl, &endian);
-	//rendering(game);
+	if (!(game->image.tab = (int*)mlx_get_data_addr(game->image.img, &bpp,
+	&game->image.sl, &endian)))
+		return (ERROR);
+	if (!(set_image(game)))
+		return (ERROR);
+	return (GOOD);
+}
+
+void	put_mapline_window(t_oo_long *game, char *mapline, int i)
+{
+	static const t_parse	c[] = {{'0', &put_empty}, {'1', &put_wall},
+	{'C', &put_consumable}, {'E', &put_exit}};
+	int	px_width;
+	int	len;
+	int	list;
+
+	px_width = 0;
+	while (mapline[len])
+	{
+		list = 0;
+		while (c[list].id != mapline[len])
+			list++;
+		c[list].func(px_width, game, i);
+		len++;
+		px_width += 50;
+	}
+}
+
+int	set_image(t_oo_long *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->len)
+	{
+		put_mapline_window(game, game->map[i], i);
+		i++;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->image.img, 0, 0);
+	return (GOOD);
 }
