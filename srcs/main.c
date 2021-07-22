@@ -8,6 +8,8 @@ void	set_struct(t_oo_long *game)
 	game->y = -1;
 	game->ex_x = -1;
 	game->ex_y = -1;
+	game->score = 0;
+	game->moves = 0;
 	game->map = NULL;
 }
 
@@ -27,9 +29,14 @@ int main(int ac, char **av)
 	set_struct(&game);
 	if (!(parser(&game, av[1])))
 		return (usage("MAP UNPARSED\n"));
-	mlx_start(&game);
+	if (!mlx_start(&game))
+	{
+		free_dtab(game.map, game.len/50);
+		return (1);
+	}
 	init_image(&game);
+	mlx_hooks(&game);
 	mlx_loop(game.mlx);
-	free_dtab(game.map, game.len);
+	free_dtab(game.map, game.len/50);
 	return (0);
 }

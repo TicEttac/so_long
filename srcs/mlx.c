@@ -22,7 +22,6 @@ int	init_image(t_oo_long *game)
 	endian = 0;
 	if (!(game->image.img = mlx_new_image(game->mlx, game->max_len, game->len)))
 		return (ERROR);
-	//player->image.sl = player->file->win[0];
 	if (!(game->image.tab = (int*)mlx_get_data_addr(game->image.img, &bpp,
 	&game->image.sl, &endian)))
 		return (ERROR);
@@ -33,21 +32,20 @@ int	init_image(t_oo_long *game)
 
 void	put_mapline_window(t_oo_long *game, char *mapline, int i)
 {
-	static const t_parse	c[] = {{'0', &put_empty}, {'1', &put_wall},
-	{'C', &put_consumable}, {'E', &put_exit}};
-	int	px_width;
+	static const t_parse	c[] = {{' ', &put_empty}, {'1', &put_wall},
+	{'C', &put_consumable}, {'E', &put_exit}, {'P', &put_player}
+	, {'0', &put_empty}};
 	int	len;
 	int	list;
 
-	px_width = 0;
-	while (mapline[len])
+	len = 0;
+	while (mapline && mapline[len])
 	{
 		list = 0;
 		while (c[list].id != mapline[len])
 			list++;
-		c[list].func(px_width, game, i);
+		c[list].func(len, game, i);
 		len++;
-		px_width += 50;
 	}
 }
 
@@ -56,7 +54,7 @@ int	set_image(t_oo_long *game)
 	int	i;
 
 	i = 0;
-	while (i < game->len)
+	while (game->map[i])
 	{
 		put_mapline_window(game, game->map[i], i);
 		i++;

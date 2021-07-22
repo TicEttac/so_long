@@ -20,12 +20,6 @@
 # define D_KEY 100
 # define ESC_KEY 65307
 
-typedef struct	s_parse
-{
-	char	id;
-	int	(*func)(int i, t_oo_long *game, int i);
-}		t_parse;
-
 typedef struct	s_img
 {
 	void		*img;
@@ -33,18 +27,22 @@ typedef struct	s_img
 	int			sl;
 }				t_img;
 
+typedef	struct	s_tex
+{
+	int			*tab;
+	void		*im;
+	int			width;
+	int			height;
+}				t_tex;
+
+
 typedef	struct	s_texs
 {
-	int			*player;
-	void		*im_player;
-	int			*cons;
-	void		*im_cons;
-	int			*wall;
-	void		*im_wall;
-	int			*empty;
-	void		*im_empty;
-	int			*exit;
-	void		*im_exit;
+	t_tex		wall;
+	t_tex		empty;
+	t_tex		cons;
+	t_tex		player;
+	t_tex		exit;
 }				t_texs;
 
 
@@ -59,20 +57,39 @@ typedef	struct	s_o_long
 	int			ex_y;
 	void		*mlx;
 	void		*win;
+	int			score;
+	int			moves;
 	t_img		image;
 	t_texs		tex;
 
 }		t_oo_long;
 
+typedef struct	s_parse
+{
+	char	id;
+	void	(*func)(int i, t_oo_long *game, int line);
+}		t_parse;
+
 int		usage();
+void	free_dtab(char **dtab, int size);
+int		error_msg(char *msg);
+int		set_image(t_oo_long *game);
+
 int		parser(t_oo_long *game, char *path);
 int 	add_start(t_oo_long *game, int x, int y);
 int 	add_exit(t_oo_long *game, int x, int y);
-void	free_dtab(char **dtab, int size);
-int		error_msg(char *msg);
+
+
 int		mlx_start(t_oo_long *game);
 int		init_image(t_oo_long *game);
-int 	load_texture_wrap(void *mlx, void *ptr, int *tab, char *path);
+int 	load_texture_wrap(void *mlx, t_tex *tex, char *path);
 int		load_textures(t_oo_long *game);
+int		mlx_hooks(t_oo_long *player);
+
+void    put_wall(int len, t_oo_long *game, int line);
+void    put_empty(int len, t_oo_long *game, int line);
+void    put_consumable(int len, t_oo_long *game, int line);
+void    put_exit(int len, t_oo_long *game, int line);
+void    put_player(int len, t_oo_long *game, int line);
 
 #endif

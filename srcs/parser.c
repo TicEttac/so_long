@@ -35,6 +35,7 @@ int	get_map(char *path, t_oo_long *game)
 	len = 0;
 	while ((gnl_ret = get_next_line(fd, &tmp)) > 0)
 	{
+		printf("[%s]\n", tmp);
 		gnl_ret = ft_strlen(tmp) * 50;
 		if (gnl_ret > game->max_len)
 			game->max_len = gnl_ret;
@@ -102,5 +103,6 @@ int	parser(t_oo_long *game, char *path)
 		free_dtab(game->map, game->len);
 		return (error_msg("Wrong map.\n"));
 	}
+	game->map[game->x][game->y] = 'P';
 	return (1);
 }
