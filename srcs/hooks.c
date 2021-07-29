@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-int	clean_exit(t_oo_long *player)
+__attribute__((noreturn))int	clean_exit(t_oo_long *player)
 {
 	int	i;
 
@@ -15,7 +15,6 @@ int	clean_exit(t_oo_long *player)
 	}
     free(player->map);
 	exit(0);
-	return (0);
 }
 
 void	interact(t_oo_long *game, int x, int y)
@@ -45,6 +44,12 @@ void	key_press(int key, t_oo_long *game)
 		game->x += 1;
 	if (key == D_KEY && y <= ft_strlen(game->map[x]) && game->map[x][y + 1] != '1')
 		game->y += 1;
+	if (game->map[x][y] == 'E' && game->score != game->item_nb)
+	{
+		game->x = x;
+		game->y = y;
+		return ;
+	} //TODO : item_nb != score = no exit 
 	if (x != (size_t)game->x || y != (size_t)game->y)
 		interact(game, x, y);
 }
@@ -52,7 +57,7 @@ void	key_press(int key, t_oo_long *game)
 int	key_hook(int key, t_oo_long *player)
 {
 	if (key == ESC_KEY)
-		return (clean_exit(player));
+		clean_exit(player);
 	if (key == W_KEY || key == S_KEY || key == A_KEY || key == D_KEY)
 		key_press(key, player);
 	return (set_image(player));

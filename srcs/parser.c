@@ -35,13 +35,13 @@ int	get_map(char *path, t_oo_long *game)
 	len = 0;
 	while ((gnl_ret = get_next_line(fd, &tmp)) > 0)
 	{
-		printf("[%s]\n", tmp);
 		gnl_ret = ft_strlen(tmp) * 50;
 		if (gnl_ret > game->max_len)
 			game->max_len = gnl_ret;
 		free(tmp);
 		len++;
 	}
+	free(tmp);
 	if (!(game->map = malloc(sizeof(char *) * (len + 1))))
 		return (error_msg("Malloc error.\n"));
 	close(fd);
@@ -51,6 +51,7 @@ int	get_map(char *path, t_oo_long *game)
 	while ((gnl_ret = get_next_line(fd, &game->map[len])))
 		len++;
 	game->map[len] = NULL;
+	printf("len[%d]\n", len);
 	return (len * 50);
 }
 
@@ -84,6 +85,8 @@ int	map_check(t_oo_long *game)
 				return (0);
 			if (game->map[i][y] == 'E' && !add_exit(game, i, y))
 				return (0);
+			if (game->map[i][y] == 'C')
+				game->item_nb++;
 			y++;
 		}
 		i++;
@@ -104,5 +107,6 @@ int	parser(t_oo_long *game, char *path)
 		return (error_msg("Wrong map.\n"));
 	}
 	game->map[game->x][game->y] = 'P';
+	printf("item_nb[%d]\n", game->item_nb);
 	return (1);
 }

@@ -10,6 +10,7 @@ void	set_struct(t_oo_long *game)
 	game->ex_y = -1;
 	game->score = 0;
 	game->moves = 0;
+	game->item_nb = 0;
 	game->map = NULL;
 }
 

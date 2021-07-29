@@ -59,6 +59,7 @@ typedef	struct	s_o_long
 	void		*win;
 	int			score;
 	int			moves;
+	int			item_nb;
 	t_img		image;
 	t_texs		tex;
 
