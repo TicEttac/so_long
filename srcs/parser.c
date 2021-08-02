@@ -50,6 +50,7 @@ int	get_map(char *path, t_oo_long *game)
 	len = 0;
 	while ((gnl_ret = get_next_line(fd, &game->map[len])))
 		len++;
+	free(game->map[len]);
 	game->map[len] = NULL;
 	printf("len[%d]\n", len);
 	return (len * 50);
