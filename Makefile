@@ -15,8 +15,6 @@ GNL_SRCS =	get_next_line.c		\
 OBJS = $(addprefix srcs/, $(SRCS))
 GNL_OBJS = $(addprefix gnl/, $(GNL_SRCS))
 
-#osef des lignes de librairie, ca compile quand meme
-
 LIB =	lib/libft.a	\
 		lib/libmlx.a\
 

@@ -2,6 +2,7 @@
 
 int	error_msg(char *msg)
 {
+	printf("Error\n");
 	perror(msg);
 	return (0);
 }
@@ -22,9 +23,9 @@ int	map_fill(char **map, int x, int y)
 
 int	get_map(char *path, t_oo_long *game)
 {
-	int	len;
-	int	fd;
-	int	gnl_ret;
+	int		len;
+	int		fd;
+	int		gnl_ret;
 	char	*tmp;
 
 	len = ft_strlen(path);
@@ -50,8 +51,8 @@ int	get_map(char *path, t_oo_long *game)
 	len = 0;
 	while ((gnl_ret = get_next_line(fd, &game->map[len])))
 		len++;
+	free(game->map[len]);
 	game->map[len] = NULL;
-	printf("len[%d]\n", len);
 	return (len * 50);
 }
 
@@ -79,12 +80,14 @@ int	map_check(t_oo_long *game)
 	{
 		while (game->map[i][y])
 		{
-			if (!(ft_strchr("10CEP", game->map[i][y])))
+			if (!(ft_strchr("10CEPVH", game->map[i][y])))
 				return (0);
 			if (game->map[i][y] == 'P' && !add_start(game, i, y))
 				return (0);
 			if (game->map[i][y] == 'E' && !add_exit(game, i, y))
 				return (0);
+			if (game->map[i][y] == 'V'  || game->map[i][y] == 'H')
+				add_enemy(game, i, y);
 			if (game->map[i][y] == 'C')
 				game->item_nb++;
 			y++;

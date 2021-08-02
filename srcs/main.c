@@ -11,6 +11,7 @@ void	set_struct(t_oo_long *game)
 	game->score = 0;
 	game->moves = 0;
 	game->item_nb = 0;
+	game->enemies = NULL;
 	game->map = NULL;
 }
 

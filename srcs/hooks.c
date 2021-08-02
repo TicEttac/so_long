@@ -44,12 +44,12 @@ void	key_press(int key, t_oo_long *game)
 		game->x += 1;
 	if (key == D_KEY && y <= ft_strlen(game->map[x]) && game->map[x][y + 1] != '1')
 		game->y += 1;
-	if (game->map[x][y] == 'E' && game->score != game->item_nb)
+	if (game->map[game->x][game->y] == 'E' && game->score != game->item_nb)
 	{
 		game->x = x;
 		game->y = y;
 		return ;
-	} //TODO : item_nb != score = no exit 
+	}
 	if (x != (size_t)game->x || y != (size_t)game->y)
 		interact(game, x, y);
 }
@@ -60,7 +60,7 @@ int	key_hook(int key, t_oo_long *player)
 		clean_exit(player);
 	if (key == W_KEY || key == S_KEY || key == A_KEY || key == D_KEY)
 		key_press(key, player);
-	return (set_image(player));
+	return (1);
 }
 
 int	mlx_hooks(t_oo_long *player)
@@ -70,6 +70,7 @@ int	mlx_hooks(t_oo_long *player)
         return (ERROR);
 	if (!(mlx_hook(player->win, 33, (1L << 17), &clean_exit, player)))
 		return (ERROR);
-	mlx_loop_hook(player->mlx, &set_image, player);
+	if (!(mlx_loop_hook(player->mlx, &set_image, player)))
+		return (ERROR);
 	return (GOOD);
 }

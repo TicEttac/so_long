@@ -26,5 +26,7 @@ int		load_textures(t_oo_long *game)
 		return (ERROR);
 	if (!(load_texture_wrap(game->mlx, &game->tex.exit, "./textures/exit.xpm")))
 		return (ERROR);
+	if (!(load_texture_wrap(game->mlx, &game->tex.enemy, "./textures/enemy.xpm")))
+		return (ERROR);
 	return (GOOD);
 }

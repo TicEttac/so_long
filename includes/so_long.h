@@ -20,12 +20,20 @@
 # define D_KEY 100
 # define ESC_KEY 65307
 
-typedef struct	s_img
+typedef	struct			s_enemy
 {
-	void		*img;
-	int			*tab;
-	int			sl;
-}				t_img;
+	int					way;
+	int					x;
+	int					y;
+	struct s_enemy		*next;
+}						t_enemy;
+
+typedef struct			s_img
+{
+	void				*img;
+	int					*tab;
+	int					sl;
+}						t_img;
 
 typedef	struct	s_tex
 {
@@ -43,6 +51,7 @@ typedef	struct	s_texs
 	t_tex		cons;
 	t_tex		player;
 	t_tex		exit;
+	t_tex		enemy;
 }				t_texs;
 
 
@@ -60,6 +69,7 @@ typedef	struct	s_o_long
 	int			score;
 	int			moves;
 	int			item_nb;
+	t_enemy		*enemies;
 	t_img		image;
 	t_texs		tex;
 
@@ -79,6 +89,7 @@ int		set_image(t_oo_long *game);
 int		parser(t_oo_long *game, char *path);
 int 	add_start(t_oo_long *game, int x, int y);
 int 	add_exit(t_oo_long *game, int x, int y);
+int		add_enemy(t_oo_long *game, int x, int y);
 
 
 int		mlx_start(t_oo_long *game);
@@ -92,5 +103,7 @@ void    put_empty(int len, t_oo_long *game, int line);
 void    put_consumable(int len, t_oo_long *game, int line);
 void    put_exit(int len, t_oo_long *game, int line);
 void    put_player(int len, t_oo_long *game, int line);
+void    vert_enemy(int len, t_oo_long *game, int i);
+void	hor_enemy(int len, t_oo_long *game, int i);
 
 #endif

@@ -34,7 +34,7 @@ void	put_mapline_window(t_oo_long *game, char *mapline, int i)
 {
 	static const t_parse	c[] = {{' ', &put_empty}, {'1', &put_wall},
 	{'C', &put_consumable}, {'E', &put_exit}, {'P', &put_player}
-	, {'0', &put_empty}};
+	, {'0', &put_empty}, {'V', &vert_enemy}, {'H', &hor_enemy}};
 	int	len;
 	int	list;
 
