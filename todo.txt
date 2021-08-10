@@ -1,2 +1,0 @@
--do set_image() > mlx.c
--do game_loop()

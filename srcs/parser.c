@@ -2,6 +2,7 @@
 
 int	error_msg(char *msg)
 {
+	printf("Error\n");
 	perror(msg);
 	return (0);
 }
@@ -22,9 +23,9 @@ int	map_fill(char **map, int x, int y)
 
 int	get_map(char *path, t_oo_long *game)
 {
-	int	len;
-	int	fd;
-	int	gnl_ret;
+	int		len;
+	int		fd;
+	int		gnl_ret;
 	char	*tmp;
 
 	len = ft_strlen(path);
@@ -50,6 +51,7 @@ int	get_map(char *path, t_oo_long *game)
 	len = 0;
 	while ((gnl_ret = get_next_line(fd, &game->map[len])))
 		len++;
+	free(game->map[len]);
 	game->map[len] = NULL;
 	printf("len[%d]\n", len);
 	return (len * 50);
@@ -92,7 +94,7 @@ int	map_check(t_oo_long *game)
 		i++;
 		y = 0;
 	}
-	if (game->x == -1 || game->ex_x == -1)
+	if (game->x == -1 || game->ex_x == -1 || game->item_nb == 0)
 		return (0);
 	return (1);
 }
@@ -107,6 +109,5 @@ int	parser(t_oo_long *game, char *path)
 		return (error_msg("Wrong map.\n"));
 	}
 	game->map[game->x][game->y] = 'P';
-	printf("item_nb[%d]\n", game->item_nb);
 	return (1);
 }

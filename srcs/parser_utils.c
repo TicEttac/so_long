@@ -9,7 +9,8 @@ int add_start(t_oo_long *game, int x, int y)
         game->map[x][y] = '0';
         return (1);
     }
-    return (0);
+    game->map[x][y] = '0';
+    return (1);
 }
 
 int add_exit(t_oo_long *game, int x, int y)
@@ -20,5 +21,6 @@ int add_exit(t_oo_long *game, int x, int y)
         game->ex_y = y;
         return (1);
     }
-    return (0);
+    game->map[x][y] = '0';
+    return (1);
 }
