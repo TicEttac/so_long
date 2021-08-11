@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 03:43:21 by nisauvig          #+#    #+#             */
+/*   Updated: 2021/08/11 03:55:59 by nisauvig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	error_msg(char *msg)
@@ -15,10 +27,29 @@ int	map_fill(char **map, int x, int y)
 	{
 		map[x][y] = ' ';
 		if (!map_fill(map, x + 1, y) || !map_fill(map, x - 1, y)
-		|| !map_fill(map, x, y + 1) || !map_fill(map, x, y - 1))
+			|| !map_fill(map, x, y + 1) || !map_fill(map, x, y - 1))
 			return (0);
 	}
 	return (1);
+}
+
+int	get_map_len(t_oo_long *game, int fd)
+{
+	int len;
+
+	len = 0;
+	gnl_ret = get_next_line(fd, &tmp);
+	while (gnl_ret > 0)
+	{
+		gnl_ret = ft_strlen(tmp) * 50;
+		if (gnl_ret > game->max_len)
+			game->max_len = gnl_ret;
+		free(tmp);
+		len++;
+		gnl_ret = get_next_line(fd, &tmp);
+	}
+	free(tmp);
+	return (len);
 }
 
 int	get_map(char *path, t_oo_long *game)
@@ -31,29 +62,22 @@ int	get_map(char *path, t_oo_long *game)
 	len = ft_strlen(path);
 	if (ft_strcmp(path + (len - 4), ".ber"))
 		return (error_msg("wrong extention"));
-	if ((fd = open(path, O_RDONLY)) < 0)
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 		return (error_msg("Failed to open conf file.\n"));
-	len = 0;
-	while ((gnl_ret = get_next_line(fd, &tmp)) > 0)
-	{
-		gnl_ret = ft_strlen(tmp) * 50;
-		if (gnl_ret > game->max_len)
-			game->max_len = gnl_ret;
-		free(tmp);
-		len++;
-	}
-	free(tmp);
-	if (!(game->map = malloc(sizeof(char *) * (len + 1))))
+	len = get_map_len(game, fd);
+	game->map = malloc(sizeof(char *) * (len + 1);
+	if (!game->map)
 		return (error_msg("Malloc error.\n"));
 	close(fd);
-	if ((fd = open(path, O_RDONLY)) < 0)
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 		return (error_msg("Failed to open conf file.\n"));
 	len = 0;
-	while ((gnl_ret = get_next_line(fd, &game->map[len])))
+	while (get_next_line(fd, &game->map[len]))
 		len++;
 	free(game->map[len]);
 	game->map[len] = NULL;
-	printf("len[%d]\n", len);
 	return (len * 50);
 }
 

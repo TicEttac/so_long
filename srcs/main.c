@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 04:02:12 by nisauvig          #+#    #+#             */
+/*   Updated: 2021/08/11 04:02:15 by nisauvig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	set_struct(t_oo_long *game)
@@ -21,7 +33,7 @@ int	usage(char *s)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_oo_long	game;
 
@@ -32,12 +44,12 @@ int main(int ac, char **av)
 		return (usage("MAP UNPARSED\n"));
 	if (!mlx_start(&game))
 	{
-		free_dtab(game.map, game.len/50);
+		free_dtab(game.map, game.len / 50);
 		return (1);
 	}
 	init_image(&game);
 	mlx_hooks(&game);
 	mlx_loop(game.mlx);
-	free_dtab(game.map, game.len/50);
+	free_dtab(game.map, game.len / 50);
 	return (0);
 }

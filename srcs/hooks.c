@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 03:23:57 by nisauvig          #+#    #+#             */
+/*   Updated: 2021/08/11 21:47:51 by nisauvig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-__attribute__((noreturn))int	clean_exit(t_oo_long *player)
+int	clean_exit(t_oo_long *player)
 {
 	int	i;
 
@@ -13,7 +25,7 @@ __attribute__((noreturn))int	clean_exit(t_oo_long *player)
 		free(player->map[i]);
 		i--;
 	}
-    free(player->map);
+	free(player->map);
 	exit(0);
 }
 
@@ -40,9 +52,11 @@ void	key_press(int key, t_oo_long *game)
 		game->x -= 1;
 	if (key == A_KEY && y > 0 && game->map[x][y - 1] != '1')
 		game->y -= 1;
-	if (key == S_KEY && x <= ft_strlen(game->map[x + 1]) && game->map[x + 1][y] != '1')
+	if (key == S_KEY && x <= ft_strlen(game->map[x + 1])
+		&& game->map[x + 1][y] != '1')
 		game->x += 1;
-	if (key == D_KEY && y <= ft_strlen(game->map[x]) && game->map[x][y + 1] != '1')
+	if (key == D_KEY && y <= ft_strlen(game->map[x])
+		&& game->map[x][y + 1] != '1')
 		game->y += 1;
 	if (game->map[game->x][game->y] == 'E' && game->score != game->item_nb)
 	{
@@ -65,9 +79,8 @@ int	key_hook(int key, t_oo_long *player)
 
 int	mlx_hooks(t_oo_long *player)
 {
-
-    if (!(mlx_hook(player->win, 2, (1L<<0), &key_hook, player)))
-        return (ERROR);
+	if (!(mlx_hook(player->win, 2, (1L << 0), &key_hook, player)))
+		return (ERROR);
 	if (!(mlx_hook(player->win, 33, (1L << 17), &clean_exit, player)))
 		return (ERROR);
 	if (!(mlx_loop_hook(player->mlx, &set_image, player)))
