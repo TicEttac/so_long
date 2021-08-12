@@ -35,7 +35,9 @@ int	map_fill(char **map, int x, int y)
 
 int	get_map_len(t_oo_long *game, int fd)
 {
-	int len;
+	int 	len;
+	int		gnl_ret;
+	char	*tmp;
 
 	len = 0;
 	gnl_ret = get_next_line(fd, &tmp);
@@ -56,8 +58,6 @@ int	get_map(char *path, t_oo_long *game)
 {
 	int		len;
 	int		fd;
-	int		gnl_ret;
-	char	*tmp;
 
 	len = ft_strlen(path);
 	if (ft_strcmp(path + (len - 4), ".ber"))
@@ -66,7 +66,7 @@ int	get_map(char *path, t_oo_long *game)
 	if (fd < 0)
 		return (error_msg("Failed to open conf file.\n"));
 	len = get_map_len(game, fd);
-	game->map = malloc(sizeof(char *) * (len + 1);
+	game->map = malloc(sizeof(char *) * (len + 1));
 	if (!game->map)
 		return (error_msg("Malloc error.\n"));
 	close(fd);
