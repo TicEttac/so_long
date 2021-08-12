@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:57:33 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/11/13 19:53:02 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:31:30 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ static size_t	ft_countword(char const *s, char c)
 	return (res);
 }
 
-static char		*ft_strdupi(const char *src, size_t szword)
+static char	*ft_strdupi(const char *src, size_t szword)
 {
 	char	*ret;
 	size_t	i;
 
-	if (!(ret = malloc(szword + 1)))
+	ret = malloc(szword + 1);
+	if (!ret)
 		return (NULL);
 	i = 0;
 	while (src[i] && i < szword)
@@ -48,7 +49,7 @@ static char		*ft_strdupi(const char *src, size_t szword)
 	return (ret);
 }
 
-static char		**ft_fillword(char const *s, char c, char **tab)
+static char	**ft_fillword(char const *s, char c, char **tab)
 {
 	size_t	i;
 	size_t	iword;
@@ -74,7 +75,7 @@ static char		**ft_fillword(char const *s, char c, char **tab)
 	return (tab);
 }
 
-char			**ft_split(char const *s1, char c)
+char	**ft_split(char const *s1, char c)
 {
 	size_t	nbword;
 	char	**tab;
@@ -82,7 +83,8 @@ char			**ft_split(char const *s1, char c)
 	if (!s1)
 		return (NULL);
 	nbword = ft_countword(s1, c);
-	if (!(tab = malloc(sizeof(char *) * (nbword + 1))))
+	tab = malloc(sizeof(char *) * (nbword + 1));
+	if (!tab)
 		return (NULL);
 	tab = ft_fillword(s1, c, tab);
 	return (tab);

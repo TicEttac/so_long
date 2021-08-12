@@ -6,7 +6,7 @@
 #    By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 01:43:35 by nisauvig          #+#    #+#              #
-#    Updated: 2020/03/12 17:37:12 by nisauvig         ###   ########.fr        #
+#    Updated: 2021/08/12 17:35:39 by nisauvig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,7 +116,7 @@ CC = gcc
 
 RM = rm -f
 
-FLAGS = #-Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 

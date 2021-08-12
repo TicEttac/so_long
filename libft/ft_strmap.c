@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 18:25:46 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/10/24 18:18:15 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:18:52 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strmap(char const *s, char (*f)(char))
 		return (NULL);
 	while (s[i])
 		i++;
-	if (!(map = malloc(i + 1)))
+	map = malloc(i + 1);
+	if (!map)
 		return (NULL);
 	i = 0;
 	while (s[i])

@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 14:10:55 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/11/15 16:04:12 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:15:33 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 
 	i = 0;
-	if (!s || !(ret = (char *)malloc(len + 1)))
+	ret = (char *)malloc(len + 1);
+	if (!s || !ret)
 		return (NULL);
 	if (start < ft_strlen(s))
 	{

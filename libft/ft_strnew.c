@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 18:36:58 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/10/14 18:37:48 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:17:07 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*ft_strnew(size_t size)
 	size_t	i;
 
 	i = 0;
-	if (!(c = malloc(size + 1)))
+	c = malloc(size + 1);
+	if (!c)
 		return (NULL);
 	while (i <= size)
 	{

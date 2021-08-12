@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   parser_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 17:55:09 by nisauvig          #+#    #+#             */
-/*   Updated: 2021/08/12 17:32:23 by nisauvig         ###   ########.fr       */
+/*   Created: 2021/08/12 17:09:34 by nisauvig          #+#    #+#             */
+/*   Updated: 2021/08/12 17:13:07 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	error_msg(char *msg)
 {
-	size_t			a;
-	unsigned char	*d;
+	printf("Error\n");
+	perror(msg);
+	return (0);
+}
 
-	a = 0;
-	d = (unsigned char *)s;
-	while (a != n)
+void	free_dtab(char **dtab, int size)
+{
+	while (size)
 	{
-		d[a] = (unsigned char)c;
-		a++;
+		free(dtab[size]);
+		dtab[size] = NULL;
+		size--;
 	}
-	return (d);
+	free(dtab[0]);
+	free(dtab);
+	dtab = NULL;
 }

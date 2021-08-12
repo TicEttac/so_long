@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 22:53:57 by nisauvig          #+#    #+#             */
-/*   Updated: 2020/03/12 17:30:38 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:21:20 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ char	*ft_strdup(const char *src)
 	char	*jaipasdidee;
 	size_t	i;
 
-	if (!(jaipasdidee = malloc(ft_strlen(src) + 1)))
+	jaipasdidee = malloc(ft_strlen(src) + 1);
+	if (!jaipasdidee)
 		return (NULL);
 	i = 0;
 	while (src[i])

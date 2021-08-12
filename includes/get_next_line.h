@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 03:38:15 by nisauvig          #+#    #+#             */
-/*   Updated: 2020/03/12 17:46:53 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:39:53 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 */
 # include <stdlib.h>
 # include "../libft/libft.h"
-#define BUFFER_SIZE 15
+# define BUFFER_SIZE 15
 /*
 ** ----------------------- < static structure > -----------------------------
 */
 
-typedef struct		s_save
+typedef struct s_save
 {
 	char			*end;
 	int				fd;

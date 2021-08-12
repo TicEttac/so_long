@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 04:03:43 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/10/23 05:20:21 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:27:10 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*ft_calloc(size_t c, size_t s)
 		s = 1;
 		c = 1;
 	}
-	if (!(r = malloc(c * s)))
+	r = malloc(c * s);
+	if (!r)
 		return (NULL);
 	ft_bzero(r, c * s);
 	return (r);

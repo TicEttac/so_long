@@ -6,18 +6,11 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 03:43:21 by nisauvig          #+#    #+#             */
-/*   Updated: 2021/08/11 03:55:59 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:11:46 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	error_msg(char *msg)
-{
-	printf("Error\n");
-	perror(msg);
-	return (0);
-}
 
 int	map_fill(char **map, int x, int y)
 {
@@ -35,7 +28,7 @@ int	map_fill(char **map, int x, int y)
 
 int	get_map_len(t_oo_long *game, int fd)
 {
-	int 	len;
+	int		len;
 	int		gnl_ret;
 	char	*tmp;
 
@@ -81,19 +74,6 @@ int	get_map(char *path, t_oo_long *game)
 	return (len * 50);
 }
 
-void	free_dtab(char **dtab, int size)
-{
-	while (size)
-	{
-		free(dtab[size]);
-		dtab[size] = NULL;
-		size--;
-	}
-	free(dtab[0]);
-	free(dtab);
-	dtab = NULL;
-}
-
 int	map_check(t_oo_long *game)
 {
 	int	i;
@@ -125,7 +105,8 @@ int	map_check(t_oo_long *game)
 
 int	parser(t_oo_long *game, char *path)
 {
-	if (!(game->len = get_map(path, game)))
+	game->len = get_map(path, game);
+	if (!game->len)
 		return (error_msg("Empty conf file.\n"));
 	if (!(map_check(game)) || !(map_fill(game->map, game->x, game->y)))
 	{

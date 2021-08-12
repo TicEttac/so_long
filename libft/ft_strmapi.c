@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:08:53 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/11/13 18:23:21 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:18:23 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	len = ft_strlen(s);
 	i = 0;
-	if (!(ret = malloc(len + 1)))
+	ret = malloc(len + 1);
+	if (!ret)
 		return (NULL);
 	while (s[i])
 	{

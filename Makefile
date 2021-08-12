@@ -4,6 +4,7 @@ NAME = so_long
 SRCS =		main.c			\
 			parser.c		\
 			parser_utils.c	\
+			parser_utils2.c	\
 			mlx.c			\
 			textures.c		\
 			hooks.c			\

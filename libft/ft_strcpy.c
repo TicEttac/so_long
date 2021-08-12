@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 18:01:35 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/10/19 00:25:03 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:21:37 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strcpy(char *dest, const char *src)
 {
-	int a;
+	int	a;
 
 	a = 0;
 	while (src[a])

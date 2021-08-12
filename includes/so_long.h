@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/12 17:39:41 by nisauvig          #+#    #+#             */
+/*   Updated: 2021/08/12 17:39:43 by nisauvig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -20,14 +32,14 @@
 # define D_KEY 100
 # define ESC_KEY 65307
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void		*img;
 	int			*tab;
 	int			sl;
 }				t_img;
 
-typedef	struct	s_tex
+typedef struct s_tex
 {
 	int			*tab;
 	void		*im;
@@ -35,8 +47,7 @@ typedef	struct	s_tex
 	int			height;
 }				t_tex;
 
-
-typedef	struct	s_texs
+typedef struct s_texs
 {
 	t_tex		wall;
 	t_tex		empty;
@@ -45,8 +56,7 @@ typedef	struct	s_texs
 	t_tex		exit;
 }				t_texs;
 
-
-typedef	struct	s_o_long
+typedef struct s_o_long
 {
 	char		**map;
 	int			len;
@@ -65,32 +75,31 @@ typedef	struct	s_o_long
 
 }		t_oo_long;
 
-typedef struct	s_parse
+typedef struct s_parse
 {
 	char	id;
 	void	(*func)(int i, t_oo_long *game, int line);
 }		t_parse;
 
-int		usage();
+int		usage(void);
 void	free_dtab(char **dtab, int size);
 int		error_msg(char *msg);
 int		set_image(t_oo_long *game);
 
 int		parser(t_oo_long *game, char *path);
-int 	add_start(t_oo_long *game, int x, int y);
-int 	add_exit(t_oo_long *game, int x, int y);
-
+int		add_start(t_oo_long *game, int x, int y);
+int		add_exit(t_oo_long *game, int x, int y);
 
 int		mlx_start(t_oo_long *game);
 int		init_image(t_oo_long *game);
-int 	load_texture_wrap(void *mlx, t_tex *tex, char *path);
+int		load_texture_wrap(void *mlx, t_tex *tex, char *path);
 int		load_textures(t_oo_long *game);
 int		mlx_hooks(t_oo_long *player);
 
-void    put_wall(int len, t_oo_long *game, int line);
-void    put_empty(int len, t_oo_long *game, int line);
-void    put_consumable(int len, t_oo_long *game, int line);
-void    put_exit(int len, t_oo_long *game, int line);
-void    put_player(int len, t_oo_long *game, int line);
+void	put_wall(int len, t_oo_long *game, int line);
+void	put_empty(int len, t_oo_long *game, int line);
+void	put_consumable(int len, t_oo_long *game, int line);
+void	put_exit(int len, t_oo_long *game, int line);
+void	put_player(int len, t_oo_long *game, int line);
 
 #endif

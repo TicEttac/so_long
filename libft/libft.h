@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 00:22:02 by nisauvig          #+#    #+#             */
-/*   Updated: 2020/03/12 17:36:59 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:14:48 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  ** ------------------------- < structure bonus > ----------------------------
 */
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -89,7 +89,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-		void (*del)(void *));
+						void (*del)(void *));
 void				ft_strclr(char *s);
 void				ft_memdel(void **ap);
 void				ft_strdel(char **as);

@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 22:11:41 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/11/07 22:54:39 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:26:20 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	len(int nb)
 	return (i);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 
@@ -65,7 +65,8 @@ char		*ft_itoa(int n)
 		return (ft_strdup("-2147483648"));
 	if (n == 0)
 		return (ft_strdup("0"));
-	if (!(str = malloc(sizeof(char) * (len(n) + 1))))
+	str = malloc(sizeof(char) * (len(n) + 1));
+	if (!str)
 		return (NULL);
 	str = aoti(str, n, 1);
 	return (str);

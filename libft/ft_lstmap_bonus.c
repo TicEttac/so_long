@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 05:20:58 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/10/27 02:23:19 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:25:15 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	if (!f || !lst)
 		return (NULL);
-	if (!(res = ft_lstnew(f(lst->content))))
+	res = ft_lstnew(f(lst->content));
+	if (!res)
 	{
 		ft_lstdelone(res, del);
 		return (res);

@@ -6,13 +6,13 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 14:31:13 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/11/15 16:53:37 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:16:32 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_test(char s, char const *ss)
+int	ft_test(char s, char const *ss)
 {
 	size_t	d;
 
@@ -42,7 +42,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 		j--;
 	if ((int)(j - i + 1) > 0)
 		len = j - i + 1;
-	if (!(ret = (char *)malloc(len + 1)))
+	ret = (char *)malloc(len + 1);
+	if (!ret)
 		return (NULL);
 	ret = ft_memcpy(ret, s1 + i, len + 1);
 	ret[len] = '\0';

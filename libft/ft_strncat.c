@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 00:25:08 by nisauvig          #+#    #+#             */
-/*   Updated: 2019/10/11 03:24:50 by nisauvig         ###   ########.fr       */
+/*   Updated: 2021/08/12 17:17:53 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	char *save;
+	char	*save;
 
 	save = s1;
 	while (s1 && *s1)
