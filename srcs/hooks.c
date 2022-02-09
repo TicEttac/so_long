@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 03:23:57 by nisauvig          #+#    #+#             */
-/*   Updated: 2021/08/11 21:47:51 by nisauvig         ###   ########.fr       */
+/*   Updated: 2022/02/08 16:04:46 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	mlx_hooks(t_oo_long *player)
 {
 	if (!(mlx_hook(player->win, 2, (1L << 0), &key_hook, player)))
 		return (ERROR);
-	if (!(mlx_hook(player->win, 33, (1L << 17), &clean_exit, player)))
+	if (!(mlx_hook(player->win, 17, 0L, &clean_exit, player)))
 		return (ERROR);
 	if (!(mlx_loop_hook(player->mlx, &set_image, player)))
 		return (ERROR);

@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 03:56:14 by nisauvig          #+#    #+#             */
-/*   Updated: 2021/08/11 04:01:16 by nisauvig         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:04:53 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	init_image(t_oo_long *game)
 void	put_mapline_window(t_oo_long *game, char *mapline, int i)
 {
 	static const t_parse	c[] = {{' ', &put_empty}, {'1', &put_wall},
-	{'C', &put_consumable}, {'E', &put_exit}, {'P', &put_player}
-	, {'0', &put_empty}};
+	{'C', &put_consumable}, {'E', &put_exit}, {'P', &put_player},
+	{'0', &put_empty}};
 	int						len;
 	int						list;
 

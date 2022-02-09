@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 03:43:21 by nisauvig          #+#    #+#             */
-/*   Updated: 2021/08/12 17:11:46 by nisauvig         ###   ########.fr       */
+/*   Updated: 2022/02/08 16:23:01 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	map_fill(char **map, int x, int y)
 {
 	if (x < 0 || y < 0 || map[x][y] == '\0' || map[x][0] == '\0')
-		return (error_msg("Open map.\n"));
+		return (ERROR);
 	if (map[x][y] == '0')
 	{
 		map[x][y] = ' ';
@@ -86,11 +86,11 @@ int	map_check(t_oo_long *game)
 		while (game->map[i][y])
 		{
 			if (!(ft_strchr("10CEP", game->map[i][y])))
-				return (0);
+				return (ERROR);
 			if (game->map[i][y] == 'P' && !add_start(game, i, y))
-				return (0);
+				return (ERROR);
 			if (game->map[i][y] == 'E' && !add_exit(game, i, y))
-				return (0);
+				return (ERROR);
 			if (game->map[i][y] == 'C')
 				game->item_nb++;
 			y++;
@@ -99,20 +99,18 @@ int	map_check(t_oo_long *game)
 		y = 0;
 	}
 	if (game->x == -1 || game->ex_x == -1 || game->item_nb == 0)
-		return (0);
-	return (1);
+		return (ERROR);
+	return (GOOD);
 }
 
 int	parser(t_oo_long *game, char *path)
 {
+	game->map = NULL;
 	game->len = get_map(path, game);
 	if (!game->len)
-		return (error_msg("Empty conf file.\n"));
+		return (ERROR);
 	if (!(map_check(game)) || !(map_fill(game->map, game->x, game->y)))
-	{
-		free_dtab(game->map, game->len);
-		return (error_msg("Wrong map.\n"));
-	}
+		return (ERROR);
 	game->map[game->x][game->y] = 'P';
-	return (1);
+	return (GOOD);
 }

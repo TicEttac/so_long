@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 17:09:34 by nisauvig          #+#    #+#             */
-/*   Updated: 2021/08/12 17:13:07 by nisauvig         ###   ########.fr       */
+/*   Updated: 2022/02/08 16:19:52 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	error_msg(char *msg)
 {
 	printf("Error\n");
-	perror(msg);
+	printf("%s", msg);
 	return (0);
 }
 

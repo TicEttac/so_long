@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 08:01:46 by nisauvig          #+#    #+#             */
-/*   Updated: 2020/03/12 17:45:37 by nisauvig         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:09:18 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char	*ft_strjoin_pimp(char *s1, char *s2)
 	c = ft_strlen_pimp(s2, 1);
 	if (s1)
 		c += ft_strlen_pimp(s1, 1);
-	if (!(s3 = malloc(sizeof(char) * (c + 1))))
+	s3 = malloc(sizeof(char) * (c + 1));
+	if (!s3)
 		return (NULL);
 	s3[0] = '\0';
 	if (s1)
@@ -73,21 +74,26 @@ char	*ft_strdupimp(char *src, int r)
 	char	*duh;
 	size_t	i;
 
-	if (!src || !(duh = malloc(ft_strlen_pimp(src, r) + 1)))
+	duh = malloc(ft_strlen_pimp(src, r) + 1);
+	if (!src || !duh)
 		return (NULL);
 	i = 0;
 	if (r == 1)
+	{
 		while (src[i] && src[i] != '\n')
 		{
 			duh[i] = src[i];
 			i++;
 		}
+	}
 	else
+	{
 		while (src[i])
 		{
 			duh[i] = src[i];
 			i++;
 		}
+	}
 	duh[i] = '\0';
 	return (duh);
 }

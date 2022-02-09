@@ -6,7 +6,7 @@
 /*   By: nisauvig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 17:39:41 by nisauvig          #+#    #+#             */
-/*   Updated: 2021/08/12 17:39:43 by nisauvig         ###   ########.fr       */
+/*   Updated: 2022/02/08 15:42:54 by nisauvig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 # define ERROR 0
 # define GOOD 1
 
-# define W_KEY 119
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
-# define ESC_KEY 65307
+# define W_KEY 13
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
+# define ESC_KEY 53
 
 typedef struct s_img
 {
@@ -81,7 +81,7 @@ typedef struct s_parse
 	void	(*func)(int i, t_oo_long *game, int line);
 }		t_parse;
 
-int		usage(void);
+int		usage(char *s);
 void	free_dtab(char **dtab, int size);
 int		error_msg(char *msg);
 int		set_image(t_oo_long *game);
