@@ -19,7 +19,7 @@ GNL_OBJS = $(addprefix gnl/, $(GNL_SRCS))
 LIB =	lib/libft.a	\
 		lib/libmlx.a\
 
-CFLAGS = -Wall -Werror -Wextra -I includes -LminilibX -lmlx -framework OpenGL -framework AppKit -lm -o
+CFLAGS = -Wall -Werror -Wextra -I includes -lbsd -lmlx -lXext -lX11 -lm -o
 
 CC = gcc
 
